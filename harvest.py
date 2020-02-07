@@ -9,7 +9,6 @@ class MelonType(object):
 
     def __init__(self, code, first_harvest, color, is_seedless, is_bestseller,
                  name):
-        """Initialize a melon."""
 
         self.pairings = []
         self.code = code
@@ -29,7 +28,7 @@ class MelonType(object):
         self.code = new_code
 
     def __repr__(self):
-        return f"<{self.name}>"
+        return f"<{self.color}>"
 
 
 def make_melon_types():
@@ -63,15 +62,26 @@ def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
 
     for melon in melon_types:
-        print(f"{melon.name}")
-        
+        print(f"{melon.name} pairs with")
+        for i in range(len(melon.pairings)):
+            print(f"-{melon.pairings[i]}")
+
 
 print_pairing_info(make_melon_types())
 
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
-    # Fill in the rest
+    all_melon_dictonary = {}
+
+    for melon in melon_types:
+        all_melon_dictonary[melon.code] = melon.name
+
+    return all_melon_dictonary
+
+
+make_melon_type_lookup(make_melon_types())
+
 
 ############
 # Part 2   #
@@ -79,12 +89,42 @@ def make_melon_type_lookup(melon_types):
 
 class Melon(object):
     """A melon in a melon harvest."""
+    def __init__(self, code, color_rating, shape_rating, field, harvestor):
 
-    # Fill in the rest
-    # Needs __init__ and is_sellable methods
+        self.sellable = None
+        self.color_rating = color_rating
+        self.shape_rating = shape_rating
+        self.field = field
+        self.harvestor = harvestor
+        self.code = code
+
+    def __repr__(self):
+        return f'<{self.field}>'
+
+    def is_sellable(self, sellable):
+        for melon in object:
+            if self.color_rating > 5 and self.shape_rating > 5 and self.field != 3:
+                self.sellable = True
+
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
+
+    melon_dictionary = make_melon_type_lookup(melon_types)
+
+    melon1 = Melon(melon_dictionary["yw"], 7, 8, 2, "Sheila")
+    melon2 = Melon(melon_dictionary["yw"], 4, 3, 2, "Sheila")
+    melon3 = Melon(melon_dictionary["yw"], 8, 9, 3, "SHeila")
+    melon4 = Melon(melon_dictionary["cas"], 6, 10, 35, "Sheila")
+    melon5 = Melon(melon_dictionary["cren"], 9, 8, 35, "Michael")
+    melon6 = Melon(6, "cren", 2, 8, 35, "Michael")
+    melon7 = Melon(7, "cren", 3, 2, 4, "Michael")
+    melon8 = Melon(8, "musk", 7, 6, 5, "Michael")
+    melon9 = Melon(9, "yw", 10, 7, 3, "Sheila")
+
+    melons = [melon1, melon2, melon3, melon4, melon5, melon6, melon7, melon8, melon9]
+
+    return melons
 
     # Fill in the rest
 
